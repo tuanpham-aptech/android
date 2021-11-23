@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Game2048/app/src/main/res/drawable/batam.xml" value="0.2703125" />
+        <entry key="..\:/Game2048/app/src/main/res/drawable/bogoc_bottommenu.xml" value="0.2703125" />
+        <entry key="..\:/Game2048/app/src/main/res/drawable/bogoc_toolbar.xml" value="0.2703125" />
+        <entry key="..\:/Game2048/app/src/main/res/drawable/box0.xml" value="0.2703125" />
+        <entry key="..\:/Game2048/app/src/main/res/drawable/box1024.xml" value="0.2703125" />
+        <entry key="..\:/Game2048/app/src/main/res/drawable/box128.xml" value="0.2703125" />
+        <entry key="..\:/Game2048/app/src/main/res/drawable/box16.xml" value="0.2703125" />
+        <entry key="..\:/Game2048/app/src/main/res/drawable/box2.xml" value="0.2703125" />
+        <entry key="..\:/Game2048/app/src/main/res/drawable/box2048.xml" value="0.2703125" />
+        <entry key="..\:/Game2048/app/src/main/res/drawable/box256.xml" value="0.2703125" />
+        <entry key="..\:/Game2048/app/src/main/res/drawable/box32.xml" value="0.2703125" />
+        <entry key="..\:/Game2048/app/src/main/res/drawable/buttonnotich.xml" value="0.2703125" />
+        <entry key="..\:/Game2048/app/src/main/res/drawable/buttontrue.xml" value="0.2703125" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>
