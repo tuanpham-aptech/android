@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.app_ecomerce">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.App_ecomerce">
+        <activity
+            android:name=".Productview1"
+            android:exported="true" />
+        <activity
+            android:name=".Posview"
+            android:exported="true" />
+        <activity
+            android:name=".Pos"
+            android:exported="true" />
+        <activity
+            android:name=".Productview"
+            android:exported="true" />
+        <activity
+            android:name=".product"
+            android:exported="true" />
+        <activity
+            android:name=".BrandEdit"
+            android:exported="true" />
+        <activity
+            android:name=".Brandview"
+            android:exported="true" />
+        <activity
+            android:name=".brand"
+            android:exported="true" />
+        <activity
+            android:name=".CategoryEdit"
+            android:exported="true" />
+        <activity
+            android:name=".Categoryview"
+            android:exported="true" />
+        <activity
+            android:name=".Category"
+            android:exported="true" />
+        <activity
+            android:name=".Main"
+            android:exported="true" />
+        <activity
+            android:name=".Login"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:gravity="center">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ĐĂNG NHẬP 🐣  🍀"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:textColor="@color/red"
+        android:textStyle="italic"
+        ></TextView>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edittextuser"
+        android:hint="Nhập tên người dùng"
+        android:layout_marginTop="20dp"></EditText>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editpassword"
+        android:hint="Nhập tên mật khẩu"
+        android:layout_marginTop="20dp"></EditText>
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+
+            android:id="@+id/buttondangky"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:text="ĐĂNG KÝ"
+            android:backgroundTint="@color/red"/>
+
+        <Button
+            android:layout_marginLeft="30dp"
+            android:backgroundTint="@color/red"
+            android:id="@+id/buttondangnhap"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="ĐĂNG NHẬP" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/thoat"
+        android:layout_width="100dp"
+        android:backgroundTint="@color/red"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="100dp"
+        android:text="THOÁT" />
+
+</LinearLayout>
