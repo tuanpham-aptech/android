@@ -1,0 +1,8 @@
+.video-name {
+  font-size: 14px !important;
+  font-weight: 500;
+}
+
+.paused .plyr__video-embed {
+  opacity: 0;
+}

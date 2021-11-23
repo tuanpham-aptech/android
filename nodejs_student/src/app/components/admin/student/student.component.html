@@ -1,0 +1,162 @@
+<div id="content" class="vlog-site-content">
+  <div class="vlog-section vlog-single-no-sid">
+    <div class="container">
+      <div class="bg-white">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="vlog-mod-head">
+              <div class="vlog-mod-title"><h4>Quản lý danh sách học sinh</h4></div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="vlog-mod-content">
+              <table class="table">
+                <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>Họ và tên</th>
+                  <th>Trình độ</th>
+                  <!--                  <th>Ngày sinh</th>-->
+                  <th>Phân loại</th>
+                  <th>Trạng thái</th>
+                  <th>Tên đăng nhập</th>
+                  <th>Mật khẩu</th>
+                  <th>Lớp theo học</th>
+                  <!--                  <th>Ngày tạo</th>-->
+                  <!--                  <th>Ngày sửa</th>-->
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let student of students;let i=index;">
+                  <ng-container *ngIf="!!student.editMode">
+                    <td></td>
+                    <td>
+                      <input [(ngModel)]="editStudent.name" placeholder="Nhập họ tên..." class="form-control">
+                    </td>
+                    <td>
+                      <select [(ngModel)]="editStudent.class" class="form-control">
+                        <option *ngFor="let item of init.classes" [value]="item.id">{{item.name}}</option>
+                      </select>
+                    </td>
+                    <!--                    <td>-->
+                    <!--                      <input [(ngModel)]="editStudent.birthday" placeholder="Ngày sinh..." class="form-control">-->
+                    <!--                    </td>-->
+                    <td>
+                      <select [(ngModel)]="editStudent.type" class="form-control">
+                        <option *ngFor="let item of init.types" [value]="item.id">{{item.name}}</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select [(ngModel)]="editStudent.status" class="form-control">
+                        <option *ngFor="let item of init.status" [value]="item.id">{{item.name}}</option>
+                      </select>
+                    </td>
+                    <td>
+                      <input [(ngModel)]="editStudent.username" placeholder="Tên đăng nhập" class="form-control">
+                    </td>
+                    <td colspan="1">
+                      <input [(ngModel)]="editStudent.password" placeholder="Mật khẩu mới"
+                             class="form-control">
+                    </td>
+                    <td>
+                      <nz-select nzPlaceHolder="Chọn lớp học" style="width: 200px;" nzMode="multiple"
+                                 [(ngModel)]="student.courses">
+                        <nz-option *ngFor="let item of courses" [nzLabel]="item.name" [nzValue]="item._id"></nz-option>
+                      </nz-select>
+                    </td>
+                    <td>
+                      <div class="btn-group btn-group-sm">
+                        <button (click)="submitUpdate();" type="button"
+                                class="btn btn-primary"
+                                style="width: 75px;">Lưu lại
+                        </button>
+                        <button (click)="student.editMode=false;listStudents();" type="button" class="btn btn-light"
+                                style="width: 60px;">Hủy bỏ
+                        </button>
+                      </div>
+                    </td>
+                  </ng-container>
+                  <ng-container *ngIf="!student.editMode">
+                    <td>{{i + 1}}</td>
+                    <td>{{student.name}}</td>
+                    <td>{{getNameById(init.classes, student.class)}}</td>
+                    <!--                    <td>{{student.birthday}}</td>-->
+                    <td>{{getNameById(init.types, student.type)}}</td>
+                    <td>{{getNameById(init.status, student.status)}}</td>
+                    <!--                    <td>{{student.createdAt | date:'HH:mm dd/MM/yyyy'}}</td>-->
+                    <!--                    <td>{{student.updatedAt | date:'HH:mm dd/MM/yyyy'}}</td>-->
+                    <td>{{student.username}}</td>
+                    <td>*******</td>
+                    <td style="max-width: 300px;">
+                      <ng-container *ngFor="let course of courses">
+                        <ng-container *ngFor="let courseId of student.courses">
+                          <nz-tag [nzColor]="'purple'"
+                                  *ngIf="course._id===courseId">{{course.name}}</nz-tag>
+                        </ng-container>
+                      </ng-container>
+                    </td>
+                    <td>
+                      <div class="btn-group btn-group-sm">
+                        <button (click)="student.editMode=true;editStudent=student;" type="button"
+                                class="btn btn-primary"
+                                style="width: 75px;">Cập nhật
+                        </button>
+                        <button (click)="deleteStudent(student)" type="button" class="btn btn-danger"
+                                style="width: 50px;">Xóa
+                        </button>
+                      </div>
+                    </td>
+                  </ng-container>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <td></td>
+                  <td>
+                    <input [(ngModel)]="newStudent.name" placeholder="Nhập họ tên..." class="form-control">
+                  </td>
+                  <td>
+                    <select [(ngModel)]="newStudent.class" class="form-control">
+                      <option *ngFor="let item of init.classes" [value]="item.id">{{item.name}}</option>
+                    </select>
+                  </td>
+                  <!--                  <td>-->
+                  <!--                    <input [(ngModel)]="newStudent.birthday" placeholder="Ngày sinh..." class="form-control">-->
+                  <!--                  </td>-->
+                  <td>
+                    <select [(ngModel)]="newStudent.type" class="form-control">
+                      <option *ngFor="let item of init.types" [value]="item.id">{{item.name}}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select [(ngModel)]="newStudent.status" class="form-control">
+                      <option *ngFor="let item of init.status" [value]="item.id">{{item.name}}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <input [(ngModel)]="newStudent.username" placeholder="Tên đăng nhập" class="form-control">
+                  </td>
+                  <td colspan="1">
+                    <input [(ngModel)]="newStudent.password" placeholder="Mật khẩu mới"
+                           class="form-control">
+                  </td>
+                  <td>
+                    <nz-select nzPlaceHolder="Chọn lớp học" style="width: 200px;" nzMode="multiple"
+                               [(ngModel)]="newStudent.courses">
+                      <nz-option *ngFor="let item of courses" [nzLabel]="item.name" [nzValue]="item._id"></nz-option>
+                    </nz-select>
+                  </td>
+                  <td>
+                    <button (click)="submitAdd();" class="btn btn-success" style="width: 90px;">Thêm mới</button>
+                  </td>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,1 @@
+document.write("Đối tượng trong Javascript ");

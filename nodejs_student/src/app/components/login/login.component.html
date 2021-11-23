@@ -1,0 +1,51 @@
+<div id="content" class="vlog-site-content">
+  <div class="vlog-section vlog-single-no-sid">
+    <div class="container">
+      <div class="vlog-content">
+
+
+        <article id="post-484" class="post-484 page type-page status-publish hentry">
+
+
+          <h1 class="entry-title vlog-page-title">Đăng nhập phần mềm học tập trực tuyến</h1>
+          <div class="entry-content entry-content-single">
+
+            <p>
+              Học sinh vui lòng đăng nhập để truy cập nội dung học tập.
+              Em có thể liên hệ email hỗ trợ: support@hoctap.com.vn
+            </p>
+
+
+            <div id="user-submitted-posts">
+
+              <div id="usp_form">
+                <fieldset class="usp-title">
+                  <label for="username">Tên đăng nhập/ mã số</label>
+                  <input [(ngModel)]="username" id="username" name="user-submitted-title" type="text" value=""
+                         placeholder="Nhập tên đăng nhập"
+                         class="usp-input">
+                </fieldset>
+
+                <fieldset class="usp-title">
+                  <label for="password">Mật khẩu</label>
+                  <input (keyup.enter)="submitLogin()" [(ngModel)]="password" id="password" name="user-submitted-title"
+                         type="password" value="" placeholder="Nhật mật khẩu"
+                         class="usp-input">
+                </fieldset>
+
+                <div id="usp-submit">
+                  <input (click)="submitLogin()" type="button" class="usp-submit" id="user-submitted-post"
+                         name="user-submitted-post"
+                         value="Đăng nhập ngay">
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+        </article>
+      </div>
+    </div>
+  </div>
+</div>

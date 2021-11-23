@@ -1,0 +1,19 @@
+.vlog-menu {
+  margin-bottom: 0;
+}
+
+.vlog-site-header .vlog-main-nav li a {
+  font-size: 16px;
+}
+
+.active {
+  color: #673AB7;
+}
+
+.menu-active-c {
+  height: 100%;
+}
+
+.menu-active-c .dl-menuwrapper > ul {
+  opacity: 1
+}

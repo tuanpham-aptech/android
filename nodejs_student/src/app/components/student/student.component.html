@@ -1,0 +1,89 @@
+<div *ngIf="!!playingVideo" class="vlog-site-content">
+  <div class="vlog-featured vlog-featured-1 vlog-featured-slider">
+    <div class="vlog-featured-item video" style="opacity: 1">
+      <div class="vlog-cover-bg">
+        <a (click)="playingVideo.isPlaying=true;getVideoUrl();" *ngIf="!playingVideo.isPlaying" class="vlog-cover"
+           style="opacity: 1;">
+          <img width="1500" height="500" [src]="getThumbnailLink(playingVideo)">
+          <span class="vlog-format-action large">
+            <i class="fa fa-play"></i>
+          </span>
+        </a>
+
+        <div *ngIf="!!playingVideo.isPlaying" class="vlog-format-content video">
+          <div class="vlog-popup-wrapper">
+            <div plyr [plyrTitle]="playingVideo.name"
+                 [plyrOptions]="playOptions" [plyrSources]="youtubeSources"></div>
+            <!--            <video (error)="onErrorPlay();" controlsList="nodownload" style="height: 500px;width: 100%" controls autoplay>-->
+            <!--              <source *ngFor="let v of playingVideo.videoUrls" [src]="v.url">-->
+            <!--            </video>-->
+          </div>
+        </div>
+      </div>
+
+      <div class="vlog-format-inplay vlog-bg">
+        <div class="container">
+          <div class="entry-header" style="opacity: 1;">
+            <span class="entry-category" style="opacity: 1;">
+                <a class="vlog-cat-9">{{getNameById(playingVideo.subject, subjects)}}</a>
+            </span>
+            <h2 class="entry-title h1">
+              {{playingVideo.name}}
+            </h2>
+            <div class="entry-meta" style="opacity: 1;">
+              <div class="meta-item meta-author"><span class="vcard author"><span
+                class="fn">{{getNameById(playingVideo.class, classes)}}</span></span></div>
+              <div class="meta-item meta-date"><span class="updated meta-icon">được gửi bởi Giáo viên</span></div>
+            </div>
+
+          </div>
+          <div class="entry-actions vlog-vcenter-actions" style="opacity: 1;">
+            <a class="action-item comments" style="opacity: 1;">Hỏi đáp ngay</a>
+            <a class="action-item watch-later">
+              <i class="fv fv-watch-later"></i>
+              <span class="add">Xem trên PC</span>
+              <span class="remove hidden">Remove</span>
+            </a>
+            <a class="action-item cinema-mode">
+              <i class="fv fv-fullscreen"></i> Toàn màn hình
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vlog-section vlog-no-sid">
+    <div class="container">
+      <div class="vlog-content">
+        <div class="row row-eq-height">
+          <div *ngFor="let course of courses" class="vlog-module module-series col-lg-12 col-md-12 col-sm-12 ">
+            <div class="vlog-mod-head">
+              <div class="vlog-mod-title"><h4>Danh sách video bài học mới ({{course.name}})</h4></div>
+            </div>
+            <div *ngIf="course && course.videos.length>0" class="row vlog-cats row-eq-height">
+              <article (click)="playingVideo=video;playingVideo.isPlaying=false;scrollTop();"
+                       *ngFor="let video of course.videos"
+                       class="vlog-lay-e vlog-cat col-lg-3 col-sm-3 col-md-3 col-xs-12 post-4 page type-page status-publish hentry">
+                <div class="entry-image">
+                  <img width="344" height="193"
+                       [src]="getThumbnailLink(video)"
+                       class="attachment-vlog-lay-e-full size-vlog-lay-e-full wp-post-image">
+                  <span class="vlog-format-action small">
+                    <i class="fa fa-play"></i>
+                  </span>
+                </div>
+                <div class="entry-header-video">
+                  <h2 class="entry-title h5 video-name">
+                    {{video.name}}
+                  </h2>
+                </div>
+              </article>
+            </div>
+            <p *ngIf="course && course.videos.length<=0">Không có video nào!!!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

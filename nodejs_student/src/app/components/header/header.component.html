@@ -1,0 +1,153 @@
+<ng-container *ngIf="!!user">
+  <header id="header" class="vlog-site-header vlog-header-shadow hidden-xs hidden-sm">
+
+    <div class="vlog-header-wrapper">
+      <div class="container">
+        <div class="vlog-header-1 vlog-header-middle">
+          <div class="vlog-slot-l">
+
+            <div class="vlog-site-branding vlog-logo-only">
+
+              <h1 class="site-title h1"><a href="#" rel="home"><img
+                class="vlog-logo" src="assets/images/vlog_logo.png" alt="Vlog"></a></h1>
+
+            </div>
+
+          </div>
+          <div class="vlog-slot-c">
+            <nav class="vlog-main-navigation">
+              <ng-container *ngIf="user.role==='admin'">
+                <ul class="vlog-main-nav vlog-menu">
+                  <li class="menu-item ">
+                    <a [routerLinkActive]="'active'" [routerLink]="['/admin/student']" aria-current="page">QL học
+                      sinh</a>
+                  </li>
+                  <li class="menu-item ">
+                    <a [routerLinkActive]="'active'" [routerLink]="['/admin/video']" aria-current="page">Thư viện
+                      video</a>
+                  </li>
+                  <li class="menu-item ">
+                    <a [routerLinkActive]="'active'" [routerLink]="['/admin/course']" aria-current="page">Quản lý lớp
+                      học/khóa học</a>
+                  </li>
+                  <li class="menu-item " (click)="logout()">
+                    <a aria-current="page">Đăng xuất</a>
+                  </li>
+                </ul>
+              </ng-container>
+
+              <ng-container *ngIf="user.role!=='admin'">
+                <ul class="vlog-main-nav vlog-menu">
+                  <li class="menu-item ">
+                    <a [routerLinkActive]="'active'" [routerLink]="['/home']" aria-current="page">Tổng hợp videos</a>
+                  </li>
+                  <li *ngFor="let subject of subjects" class="menu-item ">
+                    <a [routerLinkActive]="'active'" [routerLink]="['/subject',subject.id]"
+                       aria-current="page">{{subject.name}}</a>
+                  </li>
+                  <li class="menu-item " (click)="logout()">
+                    <a aria-current="page">Đăng xuất</a>
+                  </li>
+                </ul>
+              </ng-container>
+
+            </nav>
+
+          </div>
+          <div class="vlog-slot-r">
+            <div class="vlog-actions-menu">
+              <ul class="vlog-menu">
+                <li class="vlog-actions-button vlog-action-search">
+                                <span>
+                                    <i class="fv fv-search"></i>
+                                </span>
+                </li>
+                <li class="vlog-actions-button vlog-watch-later">
+                                <span>
+                                    <i class="fv fv-watch-later"></i>
+                                                <span class="vlog-watch-later-count pulse"
+                                                      style="display:none;">0</span>
+                                </span>
+                </li>
+                <li class="vlog-actions-button vlog-social-icons">
+                                <span>
+                                    <i class="fv fv-social"></i>
+                                </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </header>
+
+
+  <div id="vlog-responsive-header" class="vlog-responsive-header hidden-lg hidden-md" style="top: 0px;"
+       [ngClass]="{'menu-active-c':menu}">
+    <div class="container">
+      <div class="vlog-site-branding mini">
+            <span class="site-title h1">
+              <a rel="home">
+              <img class="vlog-logo-mini" src="assets/images/vlog_logo_mini.png" alt="Vlog">
+              </a>
+            </span>
+      </div>
+
+      <ul class="vlog-responsive-actions">
+        <li class="vlog-actions-button vlog-action-search">
+          <span>
+            <i class="fv fv-search"></i>
+          </span>
+        </li>
+        <li class="vlog-actions-button vlog-watch-later">
+		        <span>
+			        <i class="fv fv-watch-later"></i>
+		        </span>
+        </li>
+      </ul>
+    </div>
+
+    <div id="dl-menu" class="dl-menuwrapper" [ngClass]="{'menu-active-v':menu}">
+      <button (click)="toggleMenu()" class="dl-trigger"><i class="fa fa-bars"></i>
+      </button>
+      <ng-container *ngIf="menu">
+        <ng-container *ngIf="user.role==='admin'">
+          <ul class="vlog-mob-nav dl-menu" (click)="menu=false;">
+            <li class="menu-item ">
+              <a [routerLinkActive]="'active'" [routerLink]="['/admin/student']" aria-current="page">QL học sinh</a>
+            </li>
+            <li class="menu-item ">
+              <a [routerLinkActive]="'active'" [routerLink]="['/admin/video']" aria-current="page">Thư viện video</a>
+            </li>
+            <li class="menu-item ">
+              <a [routerLinkActive]="'active'" [routerLink]="['/admin/course']" aria-current="page">Quản lý lớp học/khóa
+                học</a>
+            </li>
+            <li class="menu-item " (click)="logout()">
+              <a aria-current="page">Đăng xuất</a>
+            </li>
+          </ul>
+        </ng-container>
+
+        <ng-container *ngIf="user.role!=='admin'">
+          <ul class="vlog-mob-nav dl-menu" (click)="menu=false">
+            <li class="menu-item ">
+              <a [routerLinkActive]="'active'" [routerLink]="['/home']" aria-current="page">Tổng hợp videos</a>
+            </li>
+            <li *ngFor="let subject of subjects" class="menu-item ">
+              <a [routerLinkActive]="'active'" [routerLink]="['/subject',subject.id]"
+                 aria-current="page">{{subject.name}}</a>
+            </li>
+            <li class="menu-item " (click)="logout()">
+              <a aria-current="page">Đăng xuất</a>
+            </li>
+          </ul>
+        </ng-container>
+      </ng-container>
+
+    </div>
+
+  </div>
+</ng-container>

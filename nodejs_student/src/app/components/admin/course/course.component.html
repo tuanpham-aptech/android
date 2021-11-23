@@ -1,0 +1,193 @@
+<div id="content" class="vlog-site-content">
+  <div class="vlog-section vlog-single-no-sid">
+    <div class="container">
+      <div class="bg-white">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="vlog-mod-head">
+              <div class="vlog-mod-title"><h4>Quản lý danh sách lớp học</h4></div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="vlog-mod-content">
+              <table class="table">
+                <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>Tên lớp học</th>
+                  <th>Trình độ</th>
+                  <th>Phân loại</th>
+                  <th>Môn học</th>
+                  <th>Ngày tạo</th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <ng-container *ngFor="let course of courses;let i =index;">
+                  <tr>
+                    <ng-container *ngIf="!course.editMode">
+                      <td>{{i + 1}}</td>
+                      <td>{{course.name}}</td>
+                      <td>{{getNameById(course.class, init.classes)}}</td>
+                      <td>{{getNameById(course.type, init.types)}}</td>
+                      <td>{{getNameById(course.subject, init.subjects)}}</td>
+                      <td>{{course.createdAt | date:'HH:mm dd/MM/yyyy'}}</td>
+                      <td>
+                        <div class="btn-group btn-group-sm">
+                          <button (click)="course.viewVideos=!course.viewVideos" type="button" class="btn btn-success"
+                                  style="width: 75px;">Videos
+                          </button>
+                          <button (click)="course.editMode=true;" type="button" class="btn btn-primary"
+                                  style="width: 75px;">Cập nhật
+                          </button>
+                          <button (click)="deleteCourse(course)" type="button" class="btn btn-danger"
+                                  style="width: 50px;">Xóa
+                          </button>
+                        </div>
+                      </td>
+                    </ng-container>
+                    <ng-container *ngIf="!!course.editMode">
+                      <td>{{i + 1}}</td>
+                      <td>
+                        <input [(ngModel)]="course.name" placeholder="Tên lớp học" class="form-control">
+                      </td>
+                      <td>
+                        <select [(ngModel)]="course.class" class="form-control">
+                          <option *ngFor="let item of init.classes" [value]="item.id">{{item.name}}</option>
+                        </select>
+                      </td>
+                      <td>
+                        <select [(ngModel)]="course.type" class="form-control">
+                          <option *ngFor="let item of init.types" [value]="item.id">{{item.name}}</option>
+                        </select>
+                      </td>
+                      <td>
+                        <select [(ngModel)]="course.subject" class="form-control">
+                          <option *ngFor="let item of init.subjects" [value]="item.id">{{item.name}}</option>
+                        </select>
+                      </td>
+                      <td></td>
+                      <td>
+                        <button (click)="course.editMode=false;submitUpdate(course);" type="button" class="btn btn-success"
+                                style="width: 75px;">Lưu lại
+                        </button>
+                        <button (click)="course.editMode=false;" type="button" class="btn btn-light"
+                                style="width: 70px;">Hủy bỏ
+                        </button>
+                      </td>
+                    </ng-container>
+                  </tr>
+                  <tr *ngIf="!!course.viewVideos">
+                    <td colspan="7">
+                      <h3 class="title-videos">Danh sách video trong lớp:</h3>
+                      <div class="video-list">
+                        <ng-container *ngFor="let video of videos;let i =index;">
+                          <ng-container *ngFor="let videoId of course.videoIds">
+                            <div class="video-item" *ngIf="video._id===videoId">
+                              <img [src]="video.thumbnailUrl" class="image-table">
+                              <p>{{video.name}}</p>
+                            </div>
+                          </ng-container>
+                        </ng-container>
+                        <div (click)="openModalAddVideo(course);" class="text-center">
+                          <button class="btn-add-video">Thêm video tới lớp này</button>
+                        </div>
+                      </div>
+
+                    </td>
+                  </tr>
+                </ng-container>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <td></td>
+                  <td>
+                    <input [(ngModel)]="newCourse.name" placeholder="Tên lớp học" class="form-control">
+                  </td>
+                  <td>
+                    <select [(ngModel)]="newCourse.class" class="form-control">
+                      <option *ngFor="let item of init.classes" [value]="item.id">{{item.name}}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select [(ngModel)]="newCourse.type" class="form-control">
+                      <option *ngFor="let item of init.types" [value]="item.id">{{item.name}}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select [(ngModel)]="newCourse.subject" class="form-control">
+                      <option *ngFor="let item of init.subjects" [value]="item.id">{{item.name}}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <button (click)="submitAdd();" class="btn btn-success" style="width: 90px;">Thêm mới</button>
+                  </td>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" role="dialog" [ngClass]="{'show':modalAddVideo}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Thêm mới video vào lớp học</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead>
+          <tr>
+            <th>STT</th>
+            <th>Ảnh đại diện</th>
+            <th>Tên video</th>
+            <th>Trình độ</th>
+            <th>Phân loại</th>
+            <th>Môn học</th>
+            <th>Ngày tạo</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let video of videos;let i =index;">
+            <td>{{i + 1}}</td>
+            <td>
+              <img [src]="video.thumbnailUrl" class="image-table2">
+            </td>
+            <td style="font-size: 14px;max-width: 200px">{{video.name}}</td>
+            <td>{{getNameById(video.class, init.classes)}}</td>
+            <td>{{getNameById(video.type, init.types)}}</td>
+            <td>{{getNameById(video.subject, init.subjects)}}</td>
+            <td>{{video.createdAt | date:'HH:mm dd/MM/yyyy'}}</td>
+            <td>
+              <div class="btn-group btn-group-sm">
+                <button *ngIf="!hasSelectedVideo(video._id)" (click)="addVideoToSelected(video)" type="button"
+                        class="btn btn-primary" style="width: 120px;">
+                  Chọn video này
+                </button>
+                <button *ngIf="hasSelectedVideo(video._id)" (click)="removeVideoToSelected(video)" type="button"
+                        class="btn btn-danger" style="width: 120px;">
+                  Bỏ chọn video
+                </button>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="submitUpdateSelectedVideos()">Lưu thay đổi</button>
+        <button type="button" class="btn btn-secondary" (click)="modalAddVideo = false;">Hủy bỏ</button>
+      </div>
+    </div>
+  </div>
+</div>

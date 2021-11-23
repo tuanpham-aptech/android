@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+
+.form-control {
+  font-size: 15px;
+}
+
+.btn {
+  font-size: 14px;
+}
+
+.btn-group-sm > .btn {
+  font-size: 13px;
+}
+
+h1, h2, h3, h4, h5, p, button, a, span {
+  font-family: Roboto, 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans', sans-serif !important;
+}
+
+/*.paused .plyr__video-embed {*/
+/*  opacity: 0;*/
+/*}*/
+
+.plyr__video-embed iframe {
+  top: -50% !important;
+  height: 200% !important;
+}

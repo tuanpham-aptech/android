@@ -1,0 +1,87 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Xin chào",
+        "Xin chào!",
+        "Bạn khoẻ không?",
+        "Có ai ở đây không?",
+        "Xin chào!",
+        "Ngày tốt lành!"
+      ],
+      "responses": [
+        "Xin chào bạn!",
+        "Xin chào, Cảm ơn bạn đã ghé thăm",
+        "Xin chào, Tôi có thể giúp được bạn",
+        "Xin chào, Tôi có thể giúp gì?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["Tạm biệt", "Hẹn gặp lại", "Tạm biệt nhé"],
+      "responses": [
+        "Hẹn gặp lại, cảm ơn bạn đã theo dõi",
+        "Chúc một ngày tốt lành ",
+        "Từ biệt! Quay lại sớm."
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": ["Cảm ơn ", "Cảm ơn!", "Hữu ích", "Cảm ơn rất nhiều!"],
+      "responses": ["Vui vẻ giúp đỡ!", "Bất cứ lúc nào!", "Hận hạnh "]
+    },
+    {
+      "tag": "items",
+      "patterns": [
+        "Bạn có những món đồ nào?",
+        "Có những loại mặt hàng nào?",
+        "Bạn bán cái gì?"
+      ],
+      "responses": [
+        "Chúng tôi bán cà phê và trà",
+        "Chúng tôi bán sữa chua và bánh",
+        "Chúng tôi bán hoa quả ",
+        "Chúng tôi bán bạn!"
+      ]
+    },
+    {
+      "tag": "payments",
+      "patterns": [
+        "Cậu có chấp nhận thẻ tín dụng không?",
+        "Bạn có chấp nhận thẻ Mastercard không?",
+        "Tôi có thể trả bằng paypal không?",
+        "Bạn chỉ có tiền mặt không?"
+      ],
+      "responses": [
+        "Chúng tôi chấp nhận VISA, Mastercard và Paypal",
+        "Chúng tôi chấp nhận hầu hết các thẻ tín dụng chính và Paypal"
+      ]
+    },
+    {
+      "tag": "delivery",
+      "patterns": [
+        "Mất bao lâu để giao hàng?",
+        "Việc lên hàng mất bao lâu?",
+        "Khi nào tôi nhận được giao hàng của mình?"
+      ],
+      "responses": [
+        "Giao hàng mất 2-4 ngày",
+        "Vận chuyển mất 2-4 ngày"
+      ]
+    },
+    {
+      "tag": "funny",
+      "patterns": [
+        "Kể cho tôi nghe một câu chuyện cười!",
+        "Hãy kể cho tôi nghe điều gì đó vui nhộn!",
+        "Bạn có biết một câu chuyện cười không?"
+      ],
+      "responses": [
+        "Tại sao hipster bị bỏng miệng? Anh ấy uống cà phê trước khi nó nguội.",
+        "Con trâu nói gì khi con trai bỏ học đại học? Bò rừng.",
+        "pip install flask pip install nltk."
+      ]
+    }
+  ]
+}

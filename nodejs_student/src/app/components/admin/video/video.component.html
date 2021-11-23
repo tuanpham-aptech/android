@@ -1,0 +1,125 @@
+<div id="content" class="vlog-site-content">
+  <div class="vlog-section vlog-single-no-sid">
+    <div class="container">
+      <div class="bg-white">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="vlog-mod-head">
+              <div class="vlog-mod-title"><h4>Quản lý thư viện videos</h4></div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="vlog-mod-content">
+              <table class="table">
+                <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>Ảnh đại diện</th>
+                  <th>Tên video</th>
+                  <th>Trình độ</th>
+                  <th>Phân loại</th>
+                  <th>Môn học</th>
+                  <th>Ngày tạo</th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let video of videos;let i =index;">
+                  <ng-container *ngIf="!video.editMode">
+                    <td>{{i + 1}}</td>
+                    <td>
+                      <img [src]="video.thumbnailUrl" class="image-table">
+                    </td>
+                    <td style="font-size: 14px;max-width: 200px">{{video.name}}</td>
+                    <td>{{getNameById(video.class, init.classes)}}</td>
+                    <td>{{getNameById(video.type, init.types)}}</td>
+                    <td>{{getNameById(video.subject, init.subjects)}}</td>
+                    <td>{{video.createdAt | date:'HH:mm dd/MM/yyyy'}}</td>
+                    <td>
+                      <div class="btn-group btn-group-sm" *ngIf="!globalEditMode">
+                        <button (click)="video.editMode=true;globalEditMode=true;" type="button" class="btn btn-primary"
+                                style="width: 75px;">
+                          Cập nhật
+                        </button>
+                        <button (click)="deleteVideo(video);" type="button" class="btn btn-danger" style="width: 50px;">
+                          Xóa
+                        </button>
+                      </div>
+                    </td>
+                  </ng-container>
+                  <ng-container *ngIf="!!video.editMode">
+                    <td>{{i + 1}}</td>
+                    <td>
+                      <img [src]="video.thumbnailUrl" class="image-table">
+                    </td>
+                    <td>
+                      <textarea [(ngModel)]="video.name" placeholder="Nhập tên video" class="form-control" rows="3"></textarea>
+                    </td>
+                    <td>
+                      <select [(ngModel)]="video.class" class="form-control">
+                        <option *ngFor="let item of init.classes" [value]="item.id">{{item.name}}</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select [(ngModel)]="video.type" class="form-control">
+                        <option *ngFor="let item of init.types" [value]="item.id">{{item.name}}</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select [(ngModel)]="video.subject" class="form-control">
+                        <option *ngFor="let item of init.subjects" [value]="item.id">{{item.name}}</option>
+                      </select>
+                    </td>
+                    <td>
+                      <div class="btn-group btn-group-sm">
+                        <button (click)="video.editMode=false; submitUpdate(video);globalEditMode=false;" type="button"
+                                class="btn btn-success" style="width: 75px;">
+                          Lưu lại
+                        </button>
+                        <button (click)="video.editMode=false;listVideos();globalEditMode=false;" type="button"
+                                class="btn btn-light"
+                                style="width: 75px;">
+                          Hủy bỏ
+                        </button>
+                      </div>
+                    </td>
+                  </ng-container>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr *ngIf="!globalEditMode">
+                  <td></td>
+                  <td>
+                    <input [(ngModel)]="newVideo.url" placeholder="Liên kết video" class="form-control">
+                  </td>
+                  <td>
+                    <textarea [(ngModel)]="newVideo.name" placeholder="Nhập tên video" class="form-control" rows="3"></textarea>
+                  </td>
+                  <td>
+                    <select [(ngModel)]="newVideo.class" class="form-control">
+                      <option *ngFor="let item of init.classes" [value]="item.id">{{item.name}}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select [(ngModel)]="newVideo.type" class="form-control">
+                      <option *ngFor="let item of init.types" [value]="item.id">{{item.name}}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select [(ngModel)]="newVideo.subject" class="form-control">
+                      <option *ngFor="let item of init.subjects" [value]="item.id">{{item.name}}</option>
+                    </select>
+                  </td>
+                  <td>
+                    <button (click)="submitAdd();" class="btn btn-success" style="width: 90px;">Thêm mới</button>
+                  </td>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

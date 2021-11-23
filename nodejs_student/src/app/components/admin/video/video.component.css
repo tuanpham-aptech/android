@@ -1,0 +1,8 @@
+.image-table {
+  width: 100px;
+  border-radius: 9px;
+}
+
+div#user-submitted-posts textarea.usp-textarea, textarea {
+  min-height: auto !important;
+}
